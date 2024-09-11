@@ -1,0 +1,58 @@
+{% extends "loginbase.html" %}
+{% load static %}
+
+{% block css_link %}
+<link rel="stylesheet" href="{% static 'users/register.css' %}">
+{% endblock %}
+
+{% block title %}Register{% endblock  %}
+
+{% block content %}
+<div class="form_sec">
+    <div class="circle1"></div>
+    <div class="circle2"></div>
+    <h2>Create Account</h2>
+    <form method="POST" class="form">
+        {% csrf_token %}
+        
+        <div class="form-group">
+            {% comment %} <label for="id_username">Username:</label> {% endcomment %}
+            <input type="text" name="username" id="id_username" placeholder="Username" maxlength="150" required>
+            <!-- Display errors here, if any -->
+            {% if form.username.errors %}
+                <div class="error">{{ form.username.errors }}</div>
+            {% endif %}
+        </div>
+        
+        <div class="form-group">
+            {% comment %} <label for="id_email">Email:</label> {% endcomment %}
+            <input type="email" name="email" id="id_email" placeholder="Email" required>
+            <!-- Display errors here, if any -->
+            {% if form.email.errors %}
+                <div class="error">{{ form.email.errors }}</div>
+            {% endif %}
+        </div>
+        
+        <div class="form-group">
+            {% comment %} <label for="id_password1">Password:</label> {% endcomment %}
+            <input type="password" name="password1" id="id_password1" placeholder="Password" required>
+            <!-- Display errors here, if any -->
+            {% if form.password1.errors %}
+                <div class="error">{{ form.password1.errors }}</div>
+            {% endif %}
+        </div>
+        
+        <div class="form-group">
+            {% comment %} <label for="id_password2">Confirm Password:</label> {% endcomment %}
+            <input type="password" name="password2" id="id_password2" placeholder="Confirm Password" required>
+            <!-- Display errors here, if any -->
+            {% if form.password2.errors %}
+                <div class="error">{{ form.password2.errors }}</div>
+            {% endif %}
+        </div>
+        
+        <button type="submit" class="signup-btn">Sign up</button>
+    </form>
+    <p class="login-link">Already have an account? <a href="{% url 'login' %}">Login</a></p>
+</div>
+{% endblock %}
